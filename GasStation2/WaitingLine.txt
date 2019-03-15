@@ -1,0 +1,38 @@
+public class WaitingLine
+{
+    private Client[ ] clients;
+    private int capacity;
+    private int numOfWaitingClients;
+    
+    public WaitingLine ( )
+    {
+        capacity = 100;
+        clients = new Client [capacity];
+        numOfWaitingClients = 0;
+        
+    }
+    
+    public void addAClient (Client aClient)
+    {
+        clients[numOfWaitingClients++] = aClient;
+    }
+    
+    public int getNumOfWaitingClients ( )
+    {
+        return numOfWaitingClients;
+    }
+    
+    public Client getNextClientInLine ( )
+    {
+        Client nextClientInLine = clients[0];
+        numOfWaitingClients--;
+        if (numOfWaitingClients >= 1)
+        {
+            for (int i = 0; i <= numOfWaitingClients-1; i++)
+                clients[i] = clients[i+1];
+            
+        }
+        return nextClientInLine;
+    }
+    
+}
